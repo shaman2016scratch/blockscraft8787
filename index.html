@@ -41,22 +41,18 @@
             document.addEventListener('keydown', function(event) {
                 if (event.key === 'a') {
                     camera.position.x--;
-
                     renderer.render(scene, camera);
                 }
                 if (event.key === 'd') {
                     camera.position.x++;
-
                     renderer.render(scene, camera);
                 }
                 if (event.key === 'w') {
                     camera.position.y++;
-
                     renderer.render(scene, camera);
                 }
                 if (event.key === 's') {
                     camera.position.y--;
-
                     renderer.render(scene, camera);
                 }
             });
