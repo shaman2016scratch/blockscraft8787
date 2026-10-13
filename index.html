@@ -90,13 +90,13 @@
             scene.add(cube34); scene.add(cube35); scene.add(cube36);
             scene.add(cube37); scene.add(cube38); scene.add(cube39);
 
-            camera.position.y = 1;
+            camera.position.y = 2;
 
             renderer.render(scene, camera);
 
             window.addEventListener('resize', () => {
                 camera.aspect = window.innerWidth / window.innerHeight;
-                camera.updateProjecttionMatrix();
+                camera.updateProjectionMatrix();
                 renderer.setSize(window.innerWidth, window.innerHeight);
             });
             document.addEventListener('keydown', function(event) {
