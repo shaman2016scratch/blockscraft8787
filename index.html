@@ -35,35 +35,39 @@
             const cube22 = new G3D.Mesh(блок, трава); const cube23 = new G3D.Mesh(блок, земля); const cube24 = new G3D.Mesh(блок, земля);
             const cube25 = new G3D.Mesh(блок, трава); const cube26 = new G3D.Mesh(блок, земля); const cube27 = new G3D.Mesh(блок, земля);
             const cube28 = new G3D.Mesh(блок, трава); const cube29 = new G3D.Mesh(блок, земля); const cube30 = new G3D.Mesh(блок, земля);
-            cube2.position.z = -1;
-            cube3.position.z = -2;
+            const cube31 = new G3D.Mesh(блок, трава); const cube32 = new G3D.Mesh(блок, земля); const cube33 = new G3D.Mesh(блок, земля); const cube34 = new G3D.Mesh(блок, земля);
+            cube2.position.y = -1;
+            cube3.position.y = -2;
             cube4.position.x = 1;
-            cube5.position.x = 1; cube5.position.z = -1;
-            cube6.position.x = 1; cube6.position.z = -2;
+            cube5.position.x = 1; cube5.position.y = -1;
+            cube6.position.x = 1; cube6.position.y = -2;
             cube7.position.x = 2;
-            cube8.position.x = 2; cube8.position.z = -1;
-            cube9.position.x = 2; cube9.position.z = -2;
-            cube10.position.y = 1;
-            cube11.position.y = 1; cube11.position.z = -1;
-            cube12.position.y = 1; cube12.position.z = -2; 
-            cube13.position.x = 1; cube13.position.y = 1;
-            cube14.position.x = 1; cube14.position.y = 1; cube14.position.z = -1;
-            cube15.position.x = 1; cube15.position.y = 1; cube15.position.z = -2;
-            cube16.position.x = 2; cube16.position.y = 1;
-            cube17.position.x = 2; cube17.position.y = 1; cube17.position.z = -1;
-            cube18.position.x = 2; cube18.position.y = 1; cube18.position.z = -2;
-            cube19.position.x = 2; cube19.position.y = 2;
-            cube20.position.x = 2; cube20.position.y = 2; cube20.position.z = -1;
-            cube21.position.x = 2; cube21.position.y = 2; cube21.position.z = -2;
-            cube22.position.x = 1; cube22.position.y = 2;
-            cube23.position.x = 1; cube23.position.y = 2; cube23.position.z = -1;
-            cube24.position.x = 1; cube24.position.y = 2; cube24.position.z = -2;
-            cube25.position.y = 2;
-            cube26.position.y = 2; cube26.position.z = -1;
-            cube27.position.y = 2; cube27.position.z = -2;
-            cube28.position.x = -1; cube28.position.y = 2;
-            cube29.position.x = -1; cube29.position.y = 2; cube29.position.z = -1;
-            cube30.position.x = -1; cube30.position.y = 2; cube30.position.z = -2;
+            cube8.position.x = 2; cube8.position.y = -1;
+            cube9.position.x = 2; cube9.position.y = -2;
+            cube10.position.z = 1;
+            cube11.position.z = 1; cube11.position.y = -1;
+            cube12.position.z = 1; cube12.position.y = -2; 
+            cube13.position.x = 1; cube13.position.z = 1;
+            cube14.position.x = 1; cube14.position.z = 1; cube14.position.y = -1;
+            cube15.position.x = 1; cube15.position.z = 1; cube15.position.y = -2;
+            cube16.position.x = 2; cube16.position.z = 1;
+            cube17.position.x = 2; cube17.position.z = 1; cube17.position.y = -1;
+            cube18.position.x = 2; cube18.position.z = 1; cube18.position.y = -2;
+            cube19.position.x = 2; cube19.position.z = 2;
+            cube20.position.x = 2; cube20.position.z = 2; cube20.position.y = -1;
+            cube21.position.x = 2; cube21.position.z = 2; cube21.position.y = -2;
+            cube22.position.x = 1; cube22.position.z = 2;
+            cube23.position.x = 1; cube23.position.z = 2; cube23.position.y = -1;
+            cube24.position.x = 1; cube24.position.z = 2; cube24.position.y = -2;
+            cube25.position.z = 2;
+            cube26.position.z = 2; cube26.position.y = -1;
+            cube27.position.z = 2; cube27.position.y = -2;
+            cube28.position.x = -1; cube28.position.z = 2;
+            cube29.position.x = -1; cube29.position.z = 2; cube29.position.y = -1;
+            cube30.position.x = -1; cube30.position.z = 2; cube30.position.y = -2;
+            cube31.position.x = -1; cube31.position.y = 1; cube31.position.z = 3;
+            cube32.position.x = -1; cube32.position.z = 3;
+            cube33.position.x = -1; cube33.position.z = 3; cube33.position.y = 1;
             scene.add(cube); scene.add(cube2); scene.add(cube3);
             scene.add(cube4); scene.add(cube5); scene.add(cube6);
             scene.add(cube7); scene.add(cube8); scene.add(cube9);
@@ -74,8 +78,9 @@
             scene.add(cube22); scene.add(cube23); scene.add(cube24);
             scene.add(cube25); scene.add(cube26); scene.add(cube27);
             scene.add(cube28); scene.add(cube29); scene.add(cube30);
+            scene.add(cube31); scene.add(cube32); scene.add(cube33);
 
-            camera.position.z = 5;
+            camera.position.y = 1;
 
             renderer.render(scene, camera);
 
@@ -94,12 +99,15 @@
                     renderer.render(scene, camera);
                 }
                 if (event.key === 'w') {
-                    camera.position.y++;
+                    camera.position.z++;
                     renderer.render(scene, camera);
                 }
                 if (event.key === 's') {
-                    camera.position.y--;
+                    camera.position.z--;
                     renderer.render(scene, camera);
+                }
+                if (event.key === 'p') {
+                    alert([camera.position.x,camera.position.y,camera.position.z].join(" "))
                 }
             });
             window.g3d = { camera, renderer }
