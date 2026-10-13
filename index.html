@@ -98,8 +98,9 @@
             camera.position.y = 3;
             camera.position.z = 8;
 
-            const keys = { a: false, d: false, w: false, s: false, q: false, e: false };
+            const keys = { a: false, d: false, w: false, s: false, q: false, e: false, up: false, down: false, left: false, right: false };
             const speed = 0.2;
+            const sR = 0.01;
 
             window.addEventListener('resize', () => {
                 camera.aspect = window.innerWidth / window.innerHeight;
@@ -114,6 +115,10 @@
                 if (event.key === 's') keys.s = true;
                 if (event.key === 'q') keys.q = true;
                 if (event.key === 'e') keys.e = true;
+                if (event.key === 'ArrowUp') keys.up = true;
+                if (event.key === 'ArrowDown') keys.down = true;
+                if (event.key === 'ArrowLeft') keys.left = true;
+                if (event.key === 'ArrowRight') keys.right = true;
             });
             document.addEventListener('keyup', (event) => {
                 if (event.key === 'a') keys.a = false;
@@ -122,6 +127,10 @@
                 if (event.key === 's') keys.s = false;
                 if (event.key === 'q') keys.q = false;
                 if (event.key === 'e') keys.e = false;
+                if (event.key === 'ArrowUp') keys.up = false;
+                if (event.key === 'ArrowDown') keys.down = false;
+                if (event.key === 'ArrowLeft') keys.left = false;
+                if (event.key === 'ArrowRight') keys.right = false;
             });
 
             function animate() {
@@ -132,6 +141,10 @@
                 if (keys.s) camera.position.z += speed;
                 if (keys.q) camera.position.y += speed;
                 if (keys.e) camera.position.y -= speed;
+                if (keys.up) camera.rotation.x += sR;
+                if (keys.down) camera.rotation.x -= sR;
+                if (keys.left) camera.rotation.y -= sR;
+                if (keys.right) camera.rotation.y += sR;
                 renderer.render(scene, camera);
             }
             animate();
