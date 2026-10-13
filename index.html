@@ -10,11 +10,14 @@
     </head>
     <body>
         <p>BlocksCraft8787 - тестовая игра-песочница</p>
-        <p>WASD - управление</p>
+        <p>WASD - управление, Q/E - вверх/вниз, P - показать координаты</p>
         <script type="module">
             import * as G3D from 'https://unpkg.com/three@0.160.0/build/three.module.js';
 
             const scene = new G3D.Scene();
+            const light = new G3D.AmbientLight(0xffffff, 1);
+            scene.add(light);
+
             const camera = new G3D.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
             const renderer = new G3D.WebGLRenderer();
             renderer.setSize(window.innerWidth, window.innerHeight);
@@ -22,9 +25,8 @@
 
             const блок = new G3D.BoxGeometry(1, 1, 1);
             const трава = new G3D.MeshBasicMaterial({ color: 0x00ff00 });
-            const песок = new G3D.MeshBasicMaterial({ color: 0xffff00 });
             const земля = new G3D.MeshBasicMaterial({ color: 0x422f08 });
-            const дерево = new G3D.MeshBasicMaterial({ color: 0x302206 })
+
             const cube = new G3D.Mesh(блок, трава); const cube2 = new G3D.Mesh(блок, земля); const cube3 = new G3D.Mesh(блок, земля);
             const cube4 = new G3D.Mesh(блок, трава); const cube5 = new G3D.Mesh(блок, земля); const cube6 = new G3D.Mesh(блок, земля);
             const cube7 = new G3D.Mesh(блок, трава); const cube8 = new G3D.Mesh(блок, земля); const cube9 = new G3D.Mesh(блок, земля);
@@ -38,6 +40,7 @@
             const cube31 = new G3D.Mesh(блок, трава); const cube32 = new G3D.Mesh(блок, земля); const cube33 = new G3D.Mesh(блок, земля);
             const cube34 = new G3D.Mesh(блок, трава); const cube35 = new G3D.Mesh(блок, земля); const cube36 = new G3D.Mesh(блок, земля);
             const cube37 = new G3D.Mesh(блок, трава); const cube38 = new G3D.Mesh(блок, земля); const cube39 = new G3D.Mesh(блок, земля);
+
             cube2.position.y = -1;
             cube3.position.y = -2;
             cube4.position.x = 1;
@@ -76,59 +79,59 @@
             cube37.position.x = 0; cube37.position.y = -1; cube37.position.z = 3;
             cube38.position.x = 0; cube38.position.z = 3;
             cube39.position.x = 0; cube39.position.z = 3; cube39.position.y = 1;
-            scene.add(cube); scene.add(cube2); scene.add(cube3);
-            scene.add(cube4); scene.add(cube5); scene.add(cube6);
-            scene.add(cube7); scene.add(cube8); scene.add(cube9);
-            scene.add(cube10); scene.add(cube11); scene.add(cube12);
-            scene.add(cube13); scene.add(cube14); scene.add(cube15);
-            scene.add(cube16); scene.add(cube17); scene.add(cube18);
-            scene.add(cube19); scene.add(cube20); scene.add(cube21);
-            scene.add(cube22); scene.add(cube23); scene.add(cube24);
-            scene.add(cube25); scene.add(cube26); scene.add(cube27);
-            scene.add(cube28); scene.add(cube29); scene.add(cube30);
-            scene.add(cube31); scene.add(cube32); scene.add(cube33);
-            scene.add(cube34); scene.add(cube35); scene.add(cube36);
-            scene.add(cube37); scene.add(cube38); scene.add(cube39);
+
+            scene.add(cube, cube2, cube3, cube4, cube5, cube6, cube7, cube8, cube9, cube10,
+                      cube11, cube12, cube13, cube14, cube15, cube16, cube17, cube18, cube19, cube20,
+                      cube21, cube22, cube23, cube24, cube25, cube26, cube27, cube28, cube29, cube30,
+                      cube31, cube32, cube33, cube34, cube35, cube36, cube37, cube38, cube39);
 
             camera.position.y = 2;
+            camera.position.z = 6;
 
-            renderer.render(scene, camera);
+            const keys = { a: false, d: false, w: false, s: false, q: false, e: false };
+            const speed = 0.2;
 
             window.addEventListener('resize', () => {
                 camera.aspect = window.innerWidth / window.innerHeight;
                 camera.updateProjectionMatrix();
                 renderer.setSize(window.innerWidth, window.innerHeight);
             });
-            document.addEventListener('keydown', function(event) {
-                if (event.key === 'a') {
-                    camera.position.x--;
-                    renderer.render(scene, camera);
-                }
-                if (event.key === 'd') {
-                    camera.position.x++;
-                    renderer.render(scene, camera);
-                }
-                if (event.key === 'w') {
-                    camera.position.z++;
-                    renderer.render(scene, camera);
-                }
-                if (event.key === 's') {
-                    camera.position.z--;
-                    renderer.render(scene, camera);
-                }
-                if (event.key === 'q') {
-                    camera.position.y++;
-                    renderer.render(scene, camera);
-                }
-                if (event.key === 'e') {
-                    camera.position.y--;
-                    renderer.render(scene, camera);
-                }
+
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'a') keys.a = true;
+                if (event.key === 'd') keys.d = true;
+                if (event.key === 'w') keys.w = true;
+                if (event.key === 's') keys.s = true;
+                if (event.key === 'q') keys.q = true;
+                if (event.key === 'e') keys.e = true;
                 if (event.key === 'p') {
-                    alert([camera.position.x,camera.position.y,camera.position.z].join(" "))
+                    alert([camera.position.x, camera.position.y, camera.position.z].join(" "));
                 }
             });
-            window.g3d = { camera, renderer }
+            document.addEventListener('keyup', (event) => {
+                if (event.key === 'a') keys.a = false;
+                if (event.key === 'd') keys.d = false;
+                if (event.key === 'w') keys.w = false;
+                if (event.key === 's') keys.s = false;
+                if (event.key === 'q') keys.q = false;
+                if (event.key === 'e') keys.e = false;
+            });
+
+            function animate() {
+                requestAnimationFrame(animate);
+
+                if (keys.a) camera.position.x -= speed;
+                if (keys.d) camera.position.x += speed;
+                if (keys.w) camera.position.z -= speed;
+                if (keys.s) camera.position.z += speed;
+                if (keys.q) camera.position.y += speed;
+                if (keys.e) camera.position.y -= speed;
+
+                renderer.render(scene, camera);
+            }
+            animate();
+
+            window.g3d = { camera, renderer };
         </script>
     </body>
 </html>
